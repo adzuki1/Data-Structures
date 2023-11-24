@@ -41,6 +41,18 @@ void heapifyDown(vector<int>& arr, int length, int i){
     }
 }
 
+void insert(vector<int>& arr, int n, int* t){
+    *t = *t + 1;
+    arr[*t] = n;
+    heapifyUp(arr, *t);
+}
+
+void remove(vector<int>& arr, int* length){
+    arr[0] = arr[*length];
+    *length = *length - 1;
+    heapifyDown(arr, 0, *length);
+}
+
 void heapSort(vector<int>& arr){
     int n = arr.size();
 
@@ -55,8 +67,6 @@ void heapSort(vector<int>& arr){
         heapifyDown(arr, i, 0);
     }
 }
-
-
 
 int main(){
     vector<int> arr = {12, 11, 13, 5, 6, 7};
