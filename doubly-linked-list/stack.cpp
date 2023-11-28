@@ -35,9 +35,7 @@ void push(NodePtr *i, int n) // Node **ptr
   node -> prev = NULL;
 
   if(isEmpty(*i))
-  {
     node -> next = NULL;
-  }
   else
   {
     node -> next = *i;
