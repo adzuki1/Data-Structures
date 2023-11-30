@@ -24,7 +24,7 @@ void heapifyUp(vector<int>& arr, int i){
 }
 
 void heapifyDown(vector<int>& arr, int length, int i){
-// Zero-based array
+    // Zero-based array
     int largest = i;
     int left = 2 * i + 1;
     int right = 2 * i + 2;
@@ -53,16 +53,23 @@ void remove(vector<int>& arr, int* length){
     heapifyDown(arr, 0, *length);
 }
 
+void heapify(vector<int>& arr){
+    int len = arr.size();
+
+    for(int i = (len/2); i >=0; --i)
+        heapifyDown(arr, i, len-1);
+}
+
 void heapSort(vector<int>& arr){
-    int n = arr.size();
+    int len = arr.size();
 
     // Build max heap
-    for(int i = n / 2 - 1; i >= 0; --i){
-        heapifyDown(arr, n, i);
+    for(int i = len / 2 - 1; i >= 0; --i){
+        heapifyDown(arr, len, i);
     }
 
     // Extract elements from the heap
-    for(int i = n - 1; i > 0; --i){
+    for(int i = len - 1; i > 0; --i){
         swap(arr[0], arr[i]);
         heapifyDown(arr, i, 0);
     }
