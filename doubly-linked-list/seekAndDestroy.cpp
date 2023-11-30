@@ -64,7 +64,7 @@ void view(NodePtr node){
   else cout << "\nNULL\n";
 }
 
-void seekAndDestroy(NodePtr& node, int n){
+void seekAndDestroy(NodePtr &node, int n){
     NodePtr temp = node;
 
     // procurar o elemento na lista
