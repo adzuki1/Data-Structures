@@ -7,10 +7,47 @@ struct Node
   Node *next;
   Node *prev;
 };
-// definindo novo tipo 'ponteiro para nó':
+// Declaring new type "pointer to Node":
 typedef Node *NodePtr;
 
+bool isEmpty(NodePtr top);
+void push(NodePtr *i, int n);
+void pop(NodePtr *i);
+void view(NodePtr node);
+void seekAndDestroy(NodePtr &node, int n);
+int menu();
+
+int main()
+{
+  NodePtr top = NULL;
+  int option;
+  int n;
+
+  do {
+    option = menu();
+    
+    switch(option) {
+      case 1: 
+        cout << "Data: ";
+        cin >> n;
+        push(&top, n); break;
+      case 2: pop(&top); break;
+      case 3: view(top); break;
+      case 4:
+        cout << "Data: ";
+        cin >> n;
+        seekAndDestroy(top, n); break;
+    }
+  }
+  while(option != 0);
+
+  return 0;
+}
+
+
+
 bool isEmpty(NodePtr top){
+  // Checks if a pointer to node contains adress
   return (top == NULL);
 }
 
@@ -65,29 +102,29 @@ void view(NodePtr node){
 }
 
 void seekAndDestroy(NodePtr &node, int n){
-    NodePtr temp = node;
+  // Search an element and remove it
+  NodePtr temp = node;
 
-    // procurar o elemento na lista
-    while(temp != NULL && temp -> data != n){
-        temp = temp -> next;
-    }
-    // se o elemento for encontrado
-    if(temp != NULL){
-        // pular os nós
-        if(temp -> next != NULL)
-            temp -> prev -> next = temp -> next;
-        else
-            // se o elem. é o primeiro da lista
-            node = temp -> next;
-        if(temp -> next != NULL)
-            temp -> next -> prev = temp -> prev;
+  // search through linked list
+  while(temp != NULL && temp -> data != n){
+      temp = temp -> next;
+  }
+  // if it finds element
+  if(temp != NULL){
+      if(temp -> next != NULL)
+          temp -> prev -> next = temp -> next;
+      // if element is first in list
+      else
+          node = temp -> next;
+      if(temp -> next != NULL)
+          temp -> next -> prev = temp -> prev;
 
-        // deletar o nó
-        delete temp;
-    }
-    else
-        // elem. não encontrado
-        cout << "Elemento " << n << " não encontrado";
+      // delete node
+      delete temp;
+  }
+  else
+      // if element not found
+      cout << "Element " << n << " not found.";
 }
 
 int menu()
@@ -102,31 +139,4 @@ int menu()
     cin >> x;
 
     return x;
-}
-
-int main()
-{
-  NodePtr top = NULL;
-  int option;
-  int n;
-
-  do {
-    option = menu();
-    
-    switch(option) {
-      case 1: 
-        cout << "Data: ";
-        cin >> n;
-        push(&top, n); break;
-      case 2: pop(&top); break;
-      case 3: view(top); break;
-      case 4:
-        cout << "Data: ";
-        cin >> n;
-        seekAndDestroy(top, n); break;
-    }
-  }
-  while(option != 0);
-
-  return 0;
 }
