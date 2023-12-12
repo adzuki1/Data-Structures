@@ -44,8 +44,6 @@ int main()
   return 0;
 }
 
-
-
 bool isEmpty(NodePtr top){
   // Checks if a pointer to node contains adress
   return (top == NULL);
